@@ -28,6 +28,10 @@ func GetTemperature() (DeviceTemperature, error) {
 	})
 
 	for _, d := range devs {
+		err = d.SetAutoDetach(true)
+		if err != nil {
+			log.Fatalf("%s.SetAutoDetach(true): %v", dev, err)
+		}
 		defer d.Close()
 	}
 
@@ -68,6 +72,10 @@ func GetTemperatures() ([]DeviceTemperature, error) {
 	})
 
 	for _, d := range devs {
+		err = d.SetAutoDetach(true)
+		if err != nil {
+			log.Fatalf("%s.SetAutoDetach(true): %v", dev, err)
+		}
 		defer d.Close()
 	}
 	if err != nil {
